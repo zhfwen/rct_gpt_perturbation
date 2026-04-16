@@ -2,17 +2,10 @@
 
 This repository contains experiments for comparing token-level explanation methods on an RCT text classifier, with a focus on perturbation-based evaluation.
 
-The project combines:
+The project examines the following explainers:
 - SHAP attributions
 - Integrated Gradients attributions
-- GPT-based perturbation importance estimates
-- AOPC-style perturbation evaluation
-
-## Project goals
-
-- Measure which tokens drive predictions for a binary RCT rigor classifier.
-- Compare attribution methods under consistent perturbation tests.
-- Summarize agreement and differences across explainers.
+- GPT-based perturbation importance estimates with two schemes: (1) GPT-index and (2) GPT-token
 
 ## Main data and folders
 
@@ -24,7 +17,8 @@ The project combines:
 - gpt_index_word_masking/: GPT token/word masking messages and results.
 - results/: Main merged outputs, figures, AOPC tables, and per-token perturbation curves.
 - results_correct_only/: Analysis outputs restricted to correctly predicted instances.
-- archive/: Older experiments, scripts, and poster-related notebooks.
+
+**All result files and the dataset is available upon reasonable request to lokkerc@mcmaster.ca**
 
 ## Core scripts
 
@@ -42,56 +36,31 @@ The project combines:
 ## Notebook guide
 
 ### gpt_importance.ipynb
-Purpose:
 - Analyze how GPT defines and applies token importance concepts.
 - Review and inspect generated message files and outputs.
 
-Typical use:
-- Inspect prompt/response behavior and definition consistency before running larger GPT perturbation sweeps.
-
 ### gpt_perturbation_explainer.ipynb
-Purpose:
 - Main GPT perturbation workflow.
 - Runs iterative masking with function-calling loops.
 - Produces GPT importance scores for index-based and word-based masking.
 
-Typical outputs:
-- JSON results in gpt_index_masking/results and gpt_index_word_masking/results.
-- Serialized message histories in the corresponding messages folders.
-
 ### gpt_sign_inversion_analysis.ipynb
-Purpose:
 - Flip GPT attribution sign conventions.
-- Recompute perturbation curves and AOPC summaries after sign inversion.
-
-Typical outputs:
-- Flipped-sign AOPC files and summary tables under results.
+- Recompute AOPC summaries after sign inversion.
 
 ### perturbation_data_cleaning.ipynb
-Purpose:
 - Data preparation and table construction.
 - Recompute logits/probabilities, assign probability groups, sample instances.
 - Build combined feature attribution tables from SHAP, IG, and GPT outputs.
 
-Typical outputs:
-- feature_attributions.csv and helper merged files used by downstream analysis notebooks.
-
 ### perturbation_analysis.ipynb
-Purpose:
 - Main analysis notebook over the selected dataset split/sample.
 - Dataset summary, feature importance bar charts, explainer correlation/regression views.
 - AOPC computation and perturbation-curve visualization.
 
-Typical outputs:
-- Figures, AOPC summaries, and per-token perturbation curve files in results.
-
 ### perturbation_analysis_correct_only.ipynb
-Purpose:
 - Repeats major analyses using only correctly classified instances.
 - Produces comparable bar charts, correlation plots, and AOPC summaries.
-
-Typical outputs:
-- Filtered tables and figures under results_correct_only.
 
 ## Typical end-to-end workflow
 
