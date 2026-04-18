@@ -1,6 +1,6 @@
 # RCT GPT Perturbation
 
-This repository contains experiments for comparing token-level explanation methods on an RCT text classifier, with a focus on perturbation-based evaluation.
+This repository contains experiments for comparing token-level explanation methods on an RCT text classifier (fine-tuned BioLinkBERT), with a focus on perturbation-based evaluation.
 
 The project examines the following explainers:
 - SHAP attributions
